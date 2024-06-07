@@ -16,7 +16,7 @@ app.get("/blog", (req, res) => {
   res.send("Hello Blog, My name is Devtamin");
 });
 
-app.get("/products", async (req, res) => {
+app.get("/api/products", async (req, res) => {
   try {
     const products = await Product.find({});
     res.status(200).json(products);
@@ -25,7 +25,7 @@ app.get("/products", async (req, res) => {
   }
 });
 
-app.get("/products/:id", async (req, res) => {
+app.get("/api/products/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const product = await Product.findById(id);
@@ -35,7 +35,7 @@ app.get("/products/:id", async (req, res) => {
   }
 });
 
-app.post("/products", async (req, res) => {
+app.post("/api/products", async (req, res) => {
   try {
     const product = await Product.create(req.body);
     res.status(200).json(product);
@@ -46,7 +46,7 @@ app.post("/products", async (req, res) => {
 });
 
 // update a product
-app.put("/products/:id", async (req, res) => {
+app.put("/api/products/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const product = await Product.findByIdAndUpdate(id, req.body);
@@ -65,7 +65,7 @@ app.put("/products/:id", async (req, res) => {
 
 // delete a product
 
-app.delete("/products/:id", async (req, res) => {
+app.delete("/api/products/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const product = await Product.findByIdAndDelete(id);
@@ -87,8 +87,8 @@ mongoose
   )
   .then(() => {
     console.log("connected to MongoDB");
-    app.listen(3000, () => {
-      console.log(`Node API app is running on port 3000`);
+    app.listen(5000, () => {
+      console.log(`Node API app is running on port 5000`);
     });
   })
   .catch((error) => {
